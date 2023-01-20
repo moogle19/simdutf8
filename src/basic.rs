@@ -40,6 +40,12 @@ pub fn from_utf8(input: &[u8]) -> Result<&str, Utf8Error> {
     }
 }
 
+/// Checks if the passed byte sequence is valid UTF-8 and returns a bool
+#[inline]
+pub fn validate_utf8(input: &[u8]) -> bool {
+    unsafe { validate_utf8_basic(input).is_ok() }
+}
+
 /// Analogue to [`std::str::from_utf8_mut()`].
 ///
 /// Checks if the passed mutable byte sequence is valid UTF-8 and returns a mutable
